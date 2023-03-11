@@ -1,17 +1,17 @@
-# rn-re-stylesheet
+# react-native-restyle-sheet
 
 test
 
 ## Installation
 
 ```sh
-npm install rn-re-stylesheet
+npm install react-native-restyle-sheet
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'rn-re-stylesheet';
+import { multiply } from 'react-native-restyle-sheet';
 
 // ...
 

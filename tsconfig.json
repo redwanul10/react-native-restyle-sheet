@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "rn-re-stylesheet": ["./src/index"]
+      "react-native-restyle-sheet": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

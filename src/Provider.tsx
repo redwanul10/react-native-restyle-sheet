@@ -10,7 +10,7 @@ import { Dimensions } from 'react-native';
 import type { indexType } from './types';
 
 type Props = {
-  breakpoints: { [key: indexType]: number };
+  breakpoints?: { [key: indexType]: number };
   theme?: {
     themeId?: string;
     [key: indexType]: any;
@@ -20,7 +20,11 @@ type Props = {
 
 const ScreenWidth = Dimensions.get('window').width;
 
-const ResponsiveProvider = ({ breakpoints, theme, children }: Props) => {
+const ResponsiveProvider = ({
+  breakpoints = { small: 0 },
+  theme,
+  children,
+}: Props) => {
   const [detailBreakPoints, setDetailBreakPoints] =
     useState<null | BreakpointDetail>(null);
 
@@ -42,6 +46,7 @@ const ResponsiveProvider = ({ breakpoints, theme, children }: Props) => {
         ...breakPointMethods,
       },
       theme: {
+        // default Theme ID
         themeId: theme?.themeId || '@random',
         ...theme,
       },
