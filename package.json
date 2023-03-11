@@ -1,5 +1,5 @@
 {
-  "name": "restyle-sheet",
+  "name": "react-native-restyle-sheet",
   "version": "0.0.1",
   "description": "test",
   "main": "lib/commonjs/index.js",
