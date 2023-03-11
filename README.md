@@ -183,3 +183,57 @@ const useStyle = ReStyleSheet(({ breakpoints }) => ({
   },
 }));
 ```
+
+## useMediaQuery Hooks
+
+It returns the device size based on breakpoints
+
+```js
+import { useMediaQuery } from 'react-native-restyle-sheet';
+
+const Demo = () => {
+  const devicetype = useMediaQuery()
+  console.log(devicetype) // For Example: small
+
+  ....
+};
+```
+
+It also accepts custom breakpoints and returns boolean value
+
+```js
+const isTablet = useMediaQuery({ min: 400, max: 800 });
+const isExtraLarge = useMediaQuery({ min: 1200 });
+const isExtraSmall = useMediaQuery({ Max: 576 });
+
+console.log(isTablet); //false
+```
+
+**NOTE:** If you are using **useMediaQuery** & **ReStyleSheet** both in same component follow the recommended usage
+
+```js
+import { useMediaQuery } from 'react-native-restyle-sheet';
+
+const useStyle = ReStyleSheet(() => ({
+  header: {
+    fontSize: 20,
+  },
+}));
+
+const Demo = () => {
+   // Not recommended because useStyle also uses useMediaQuery under the hood
+  const size = useMediaQuery();
+  const { styles } = useStyle({});
+
+  // Recommended
+  const { styles, deviceType: size } = useStyle({}, true);
+
+  // Recommended
+  const { styles, deviceType: size } = useStyle({}, true);
+  const isTablet = useMediaQuery({ min: 400, max: 800 });
+  const isExtraLarge = useMediaQuery({ min: 1200 });
+  const isExtraSmall = useMediaQuery({ Max: 576 });
+
+  ....
+};
+```

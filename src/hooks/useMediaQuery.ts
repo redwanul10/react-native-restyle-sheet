@@ -23,12 +23,12 @@ const detectCustomMediaQuery = (
   return false;
 };
 
-type Props = {
+// type Props = ;
+
+const useMediaQuery = (props?: {
   min?: number;
   max?: number;
-};
-
-const useMediaQuery = (props: Props): string | boolean => {
+}): string | boolean => {
   // const { device } = useContext<any>(ProviderContext);
   const device: any = store.useStore(
     (state: any) => state.device,
