@@ -6,14 +6,18 @@
 ![GitHub](https://img.shields.io/github/license/redwanul10/react-native-restyle-sheet)
 ![npm](https://img.shields.io/npm/dw/react-native-restyle-sheet)
 
-restyle-sheet provides flexible way to define Themeing, Dynamic styles & Media Query support for React Native
+restyle-sheet provides flexible way to define Theming, Dynamic styles & Media Query support for React Native
 
 ## Features
 
 - Media Query Support
-- Easy way to define Dynamic Style & Themeing (No inline style)
+- Easy way to define Dynamic Style & Theming (No inline style)
 - useMediaQuery hooks
 - Fully typed with TypeScript
+
+## PlayGround
+
+Check out the playGround [link](https://codesandbox.io/s/react-native-restyle-sheet-example-vh19ce)
 
 ## Install
 
@@ -190,6 +194,17 @@ const useStyle = ReStyleSheet(({ breakpoints }) => ({
 }));
 ```
 
+## breakpoints API
+
+
+| Methods        | Arguments           |Required  | Returns |
+| ------------- |:-------------:| -------------| -------------|
+| **`breakpoints.up(size)`**      | size (string) |true |MediaQuery key (string) | 
+| **`breakpoints.down(size)`**      | size (string) |true | MediaQuery key (string) |
+| **`breakpoints.only(size)`**      | size (string) |true | MediaQuery key (string) |
+
+
+
 ## useMediaQuery Hooks
 
 It returns the device size based on breakpoints
@@ -243,3 +258,9 @@ const Demo = () => {
   ....
 };
 ```
+
+## License
+
+MIT
+
+---
