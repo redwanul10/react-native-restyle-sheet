@@ -2,12 +2,16 @@
 
 # react-native-restyle-sheet
 
+[![npm version](https://img.shields.io/npm/v/react-native-restyle-sheet)](https://www.npmjs.com/package/react-native-restyle-sheet)
+![GitHub](https://img.shields.io/github/license/redwanul10/react-native-restyle-sheet)
+![npm](https://img.shields.io/npm/dw/react-native-restyle-sheet)
+
 restyle-sheet provides flexible way to define Themeing, Dynamic styles & Media Query support for React Native
 
 ## Features
 
 - Media Query Support
-- Easy way to define themeing
+- Easy way to define Dynamic Style & Themeing (No inline style)
 - useMediaQuery hooks
 - Fully typed with TypeScript
 
