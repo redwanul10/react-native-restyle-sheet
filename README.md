@@ -17,7 +17,7 @@ restyle-sheet provides flexible way to define Theming, Dynamic styles & Media Qu
 
 ## PlayGround
 
-Check out the playGround [link](https://codesandbox.io/s/react-native-restyle-sheet-example-vh19ce)
+Check out the codeSandbox playGround [link](https://codesandbox.io/s/react-native-restyle-sheet-example-vh19ce)
 
 ## Install
 
@@ -229,7 +229,7 @@ const isExtraSmall = useMediaQuery({ Max: 576 });
 
 console.log(isTablet); //false
 ```
-
+<!---
 **NOTE:** If you are using **useMediaQuery** & **ReStyleSheet** both in same component follow the recommended usage
 
 ```js
@@ -258,6 +258,7 @@ const Demo = () => {
   ....
 };
 ```
+-->
 
 ## License
 
