@@ -1,7 +1,7 @@
 {
   "name": "react-native-restyle-sheet",
   "version": "0.0.4",
-  "description": "test",
+  "description": "restyle-sheet provides flexible way to define Theming, Dynamic styles & Media Query support for React Native",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "types": "lib/typescript/src/index.d.ts",
@@ -37,8 +37,10 @@
   },
   "keywords": [
     "react-native",
-    "ios",
-    "android"
+    "react-native-media-query",
+    "react-native-responsive",
+    "react-native-restyle-sheet",
+    "restyle-sheet"
   ],
   "repository": "https://github.com/redwanul10/restyle-sheet",
   "author": "redwanul islam <redwanulislam12@gmail.com> (https://github.com/redwanul10)",

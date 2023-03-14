@@ -1,55 +1,26 @@
 import * as React from 'react';
 
-import { View, Text, SafeAreaView, Pressable } from 'react-native';
-import { Provider, ReStyleSheet } from 'react-native-restyle-sheet';
-
-const useStyle = ReStyleSheet(() => ({
-  header: {
-    fontSize: 20,
-    color: (props) => props?.activeColor,
-  },
-}));
-
-const Demo = () => {
-  const [color, setColor] = React.useState('red');
-  const { styles } = useStyle({ activeColor: color });
-
-  const toggleColor = () => {
-    setColor(color === 'red' ? 'green' : 'red');
-  };
-
-  return (
-    <View>
-      <Text style={styles.header}>Hello World</Text>
-      <Pressable onPress={toggleColor}>
-        <Text>Toggle Color</Text>
-      </Pressable>
-    </View>
-  );
-};
+import { SafeAreaView } from 'react-native';
+import { Provider } from 'react-native-restyle-sheet';
+import HooksExample from './HooksExample';
+import ReStyleSheetExample from './ReStyleSheetExample';
 
 export default function App() {
-  const [toggleTheme, setToggleTheme] = React.useState(false);
   return (
     <SafeAreaView>
       <Provider
         theme={{
-          themeId: 'light',
-          primaryColor: 'yellow',
+          themeId: 'darkTheme',
+          primaryBgColor: '#37306B',
         }}
         breakpoints={{
           small: 0,
-          medium: 250,
-          large: 510,
+          medium: 500,
+          large: 800,
         }}
       >
-        <View style={{}}>
-          <Text>Result is: </Text>
-          <Pressable onPress={() => setToggleTheme(!toggleTheme)}>
-            <Text>Toggle Theme</Text>
-          </Pressable>
-          <Demo />
-        </View>
+        <ReStyleSheetExample />
+        <HooksExample />
       </Provider>
     </SafeAreaView>
   );

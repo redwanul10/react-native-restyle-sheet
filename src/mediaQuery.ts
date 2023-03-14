@@ -1,4 +1,3 @@
-import { isDynamicValue, addDynamicValue } from './ReStyleSheet';
 import type {
   Operators,
   BreakPointMethods,
@@ -7,6 +6,8 @@ import type {
   Operator,
   StyleObject,
 } from './types';
+import { addDynamicValue } from './utill/addDynamicValue';
+import { isDynamicValue } from './utill/isDynamicValue';
 
 const generateMediaQueryMethod = (operator: Operator) => {
   return (deviceType: string): string => {

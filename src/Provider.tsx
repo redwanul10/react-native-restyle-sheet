@@ -15,7 +15,7 @@ type Props = {
     themeId?: string;
     [key: indexType]: any;
   };
-  children: JSX.Element;
+  children: React.ReactNode;
 };
 
 const ScreenWidth = Dimensions.get('window').width;

@@ -61,7 +61,7 @@ export type breakpoint = {
 type RNStyle = ViewStyle & TextStyle & ImageStyle;
 type mergeRnstyle = Query & RNStyle;
 
-export type TestStylesType2 = {
+export type StyleProps = {
   [key: indexType]: {
     [key in keyof mergeRnstyle]?: mergeRnstyle[key] extends RNStyle
       ? RNStyle | ((options: { [key: indexType]: any }) => any)

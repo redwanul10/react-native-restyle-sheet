@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import store from './createStore';
 import multiKeyStore from './multiKeyStore';
@@ -11,28 +11,14 @@ import type {
   BreakPoints,
   Config,
   breakpoint,
-  TestStylesType2,
+  StyleProps,
   indexType,
   BreakPointMethods,
   StyleObject,
 } from './types';
 import shallowEqual from './utill/shallowEqual';
-
-export const isDynamicValue = (styleKey: string): boolean =>
-  typeof styleKey === 'function';
-
-export const addDynamicValue = (
-  dynamicValues: DynamicValues[] | any,
-  key: string,
-  cssKey: string,
-  cssValue: () => any
-): DynamicValues[] | any => {
-  dynamicValues[cssKey] = {
-    key: `${key}.${cssKey}`,
-    dynamic: cssValue,
-  };
-  return dynamicValues;
-};
+import { isDynamicValue } from './utill/isDynamicValue';
+import { addDynamicValue } from './utill/addDynamicValue';
 
 const processStyles = (
   styles: StyleObject,
@@ -221,7 +207,7 @@ const customShallowEqual = (
   return shallowEqual(prev, current);
 };
 
-const ReStyleSheet = <T extends (theme: breakpoint) => TestStylesType2>(
+const ReStyleSheet = <T extends (theme: breakpoint) => StyleProps>(
   styleFunc: T
 ): ((
   props?: any,
@@ -230,6 +216,7 @@ const ReStyleSheet = <T extends (theme: breakpoint) => TestStylesType2>(
   styles: { [key in keyof ReturnType<T>]?: Object };
   deviceType: String;
 }) => {
+  let isHooksReady = false;
   const useStyle = (props: any = {}, size: boolean | undefined) => {
     let accessed = useRef<string | { theme?: boolean; breakpoints?: boolean }>(
       'pending'
@@ -250,10 +237,15 @@ const ReStyleSheet = <T extends (theme: breakpoint) => TestStylesType2>(
     let finalStyle = useRef({});
     const { width, device } = data;
 
+    useEffect(() => {
+      isHooksReady = true;
+    }, []);
+
     const cacheStyleConfig = CACHE.current.get(data.theme.themeId, device);
+
     if (accessed.current === 'pending') accessed.current = {};
 
-    if (!cacheStyleConfig) {
+    if (!isHooksReady || !cacheStyleConfig) {
       const config = init(styleFunc, data, width, accessed);
       CACHE.current.set(data.theme.themeId, device, config);
       styleConfig.current = config;
@@ -266,7 +258,7 @@ const ReStyleSheet = <T extends (theme: breakpoint) => TestStylesType2>(
       prevThemeId.current !== data.theme.themeId ||
       activeMediaQuery.current !== device;
 
-    if (isPropsOrThemeOrDeviceTypeChanged) {
+    if (!isHooksReady || isPropsOrThemeOrDeviceTypeChanged) {
       finalStyle.current = applyDynamicValues(styleConfig.current, props);
       prevProps.current = JSON.stringify(props);
       prevThemeId.current = data.theme.themeId;
