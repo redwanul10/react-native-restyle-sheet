@@ -1,6 +1,6 @@
 {
   "name": "react-native-restyle-sheet",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "restyle-sheet provides flexible way to define Theming, Dynamic styles & Media Query support for React Native",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
