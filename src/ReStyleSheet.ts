@@ -108,7 +108,7 @@ const applyDynamicValues = (styleConfig: Config, props: object) => {
 };
 
 const createObserable = (
-  data: { theme: object; breakPointMethods: BreakPointMethods },
+  data: { theme: object; breakPointMethods: BreakPointMethods<any> },
   onAccess: (property: string) => void
 ) => {
   let options = {};
@@ -208,7 +208,7 @@ const customShallowEqual = (
   return shallowEqual(prev, current);
 };
 
-const ReStyleSheet = <T extends (theme: breakpoint) => StyleProps>(
+const ReStyleSheet = <T extends (theme: breakpoint<any>) => StyleProps>(
   styleFunc: T
 ): ((
   props?: any,

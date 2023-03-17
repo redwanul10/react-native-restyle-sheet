@@ -33,8 +33,8 @@ export type Operators = {
 };
 
 type BrMethodTypes = 'up' | 'down' | 'only';
-export type BreakPointMethods = {
-  [key in BrMethodTypes]: (deviceType: string) => string;
+export type BreakPointMethods<T> = {
+  [key in BrMethodTypes]: (deviceType: keyof T) => string;
 };
 
 export type Config = {
@@ -50,12 +50,12 @@ export type Query = {
     | ((options: { [key: indexType]: any }) => any);
 };
 
-type theme = {
-  [key: indexType]: any;
-};
-export type breakpoint = {
-  breakpoints: BreakPointMethods;
-  theme: theme;
+// type theme = {
+//   [key: indexType]: any;
+// };
+export type breakpoint<T extends { breakpoints: object; theme: object }> = {
+  breakpoints: BreakPointMethods<T['breakpoints']>;
+  theme: T['theme'];
 };
 
 type RNStyle = ViewStyle & TextStyle & ImageStyle;

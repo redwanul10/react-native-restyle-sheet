@@ -15,7 +15,7 @@ const generateMediaQueryMethod = (operator: Operator) => {
   };
 };
 
-export const breakPointMethods: BreakPointMethods = {
+export const breakPointMethods: BreakPointMethods<{}> = {
   up: generateMediaQueryMethod('>'),
   down: generateMediaQueryMethod('<'),
   only: generateMediaQueryMethod('='),
