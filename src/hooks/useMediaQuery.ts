@@ -1,5 +1,7 @@
 import { createContext, useEffect, useRef, useState } from 'react';
 import { Dimensions } from 'react-native';
+import checkProviderError from '../validations/checkProviderError';
+
 import store from '../createStore';
 
 import shallowEqual from '../utill/shallowEqual';
@@ -31,12 +33,17 @@ const useMediaQuery = (props?: {
 }): string | boolean => {
   // const { device } = useContext<any>(ProviderContext);
   const device: any = store.useStore(
-    (state: any) => state.device,
+    (state: any) => state?.device,
     (prev: any, current: any) => {
       if (props) return true;
       return shallowEqual(prev, current);
     }
   );
+
+  if (__DEV__) {
+    checkProviderError(device);
+  }
+
   const listenerRef = useRef<any>();
   const [isActive, setIsActive] = useState<boolean>(false);
   const isActiveRef = useRef(false);

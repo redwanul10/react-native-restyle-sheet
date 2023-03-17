@@ -22,7 +22,7 @@ const initStore = (initialState: object) => {
   return { state, setState, getState, subscribe };
 };
 
-const createStore = (initialState: object) => {
+const createStore = (initialState: any) => {
   const store = initStore(initialState);
   const useStore = (selector?: any, shEqueal?: any) => {
     return useSyncExternalStoreWithSelector(
@@ -36,6 +36,6 @@ const createStore = (initialState: object) => {
   return { useStore, store };
 };
 
-const store = createStore({});
+const store = createStore(null);
 
 export default store;
