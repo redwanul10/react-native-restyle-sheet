@@ -228,7 +228,6 @@ const ReStyleSheet = <T extends (theme: breakpoint<any>) => StyleProps>(
         customShallowEqual(prev, current, accessed, size)
     ) as any;
 
-    console.log(data);
     let activeMediaQuery = useRef('');
     let styleConfig = useRef<Config>({ dynamicValues: [], styles: {} });
     let CACHE = useRef(new multiKeyStore());
