@@ -15,6 +15,8 @@ restyle-sheet provides flexible way to define Theming, Dynamic styles & Media Qu
 - useMediaQuery hooks
 - Fully typed with TypeScript
 
+https://user-images.githubusercontent.com/22383818/226711571-9a310e32-7e3d-499c-a04a-898028be49ec.mp4
+
 ## PlayGround
 
 Check out the codeSandbox playGround [link](https://codesandbox.io/s/react-native-restyle-sheet-example-vh19ce)
@@ -29,40 +31,63 @@ npm install --save react-native-restyle-sheet
 
 ## Usage
 
-1. Wrap your app in the Provider
+1. First We need to initialize Style Sheet  
 
 ```js
-import { Provider } from 'react-native-restyle-sheet';
+// theme.js
 
-export default function App() {
-  return (
-    <Provider>
-      <RestOfYourApp />
-    <Provider/>
-  );
-}
+import { createStyleSheet } from 'react-native-restyle-sheet';
+
+export const lightTheme = {
+  themeId: 'light',
+  colors: {
+    main: 'green',
+    primary: '#00235B',
+    secondary: '#E21818',
+    tertiary: '#FFDD83',
+    quatenary: '#98DFD6',
+  },
+};
+
+const breakpoints = {
+  small: 0,
+  medium: 500,
+  large: 800,
+  // you can define custom device size also
+};
+
+export const { ReStyleSheet, changeTheme } = createStyleSheet({
+  theme: lightTheme,
+  breakpoints,
+});
 ```
 
-2. Then use ReStyleSheet like this everywhere in your app:
+2. Then use ReStyleSheet like this anywhere in your app with theme & breakpoints:
 
 ```js
-import { View, Text, SafeAreaView, Pressable } from 'react-native';
-import { Provider, ReStyleSheet } from 'react-native-restyle-sheet';
+import React from 'react';
+import { View, Text } from 'react-native';
+import { ReStyleSheet } from './theme';
 
-const useStyle = ReStyleSheet(() => ({
+const useStyle = ReStyleSheet(({ theme, breakpoints }) => ({
   header: {
     fontWeight: 'bold',
     fontSize: 20,
-    color: 'red',
+    color: theme.colors.tertiary,
+    [breakpoints.only('medium')]: {
+      color: theme.colors.primary,
+    },
   },
 }));
 
 const Demo = () => {
   const { styles } = useStyle();
   return (
-    <View>
-      <Text style={styles.header}>Hello World</Text>
-    </View>
+    <>
+      <View>
+        <Text style={styles.header}>Hello World</Text>
+      </View>
+    </>
   );
 };
 ```
@@ -98,60 +123,44 @@ const Demo = () => {
 };
 ```
 
-## Define Themeing & Media Query
+## Change Theme
 
-1. First we need to pass Theme & Breakpoints through Provider
-
-```js
-import { Provider } from 'react-native-restyle-sheet';
-
-export default function App() {
-  return (
-      <Provider
-        theme={{
-          themeId: 'light',
-          primaryColor: 'yellow',
-        }}
-        breakpoints={{
-          small: 0,
-          medium: 250,
-          large: 510,
-        }}
-      >
-      <RestOfYourApp />
-    <Provider/>
-  );
-}
-```
-
-2. Then we can start using Theme & breakpoints inside ReStyleSheet
+1. To change the Theme we can use **`changeTheme()`** method anywhere in our app
 
 ```js
-import { View, Text, SafeAreaView, Pressable } from 'react-native';
-import { Provider, ReStyleSheet } from 'react-native-restyle-sheet';
+// theme.js
 
-const useStyle = ReStyleSheet(({ theme, breakpoints }) => ({
-  header: {
-    backgroundColor: theme?.primaryColor,
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: 'red',
-    [breakpoints.only('large')]: {
-      paddingVertical: 20,
-      color: 'black',
-    },
+import { createStyleSheet } from 'react-native-restyle-sheet';
+
+const lightTheme = {
+  themeId: 'lightTheme',
+  colors: {
+    ...
   },
-}));
-
-const Demo = () => {
-  const { styles } = useStyle();
-  return (
-    <View>
-      <Text style={styles.header}>Hello World</Text>
-    </View>
-  );
 };
+
+const darkTheme = {
+  themeId: 'darkTheme',
+  colors: {
+    ...
+  },
+};
+
+const breakpoints = {
+ ...
+};
+
+export const { ReStyleSheet, changeTheme } = createStyleSheet({
+  theme: lightTheme,
+  breakpoints,
+});
+
+export const toggleTheme = () => {
+  changeTheme((themId) => (themId === 'darkTheme' ? lightTheme : darkTheme));
+};
+
 ```
+
 
 ## Override Media Query
 
