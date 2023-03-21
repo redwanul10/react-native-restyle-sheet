@@ -19,7 +19,6 @@ import type {
 import shallowEqual from './utill/shallowEqual';
 import { isDynamicValue } from './utill/isDynamicValue';
 import { addDynamicValue } from './utill/addDynamicValue';
-import checkProviderError from './validations/checkProviderError';
 
 const processStyles = (
   styles: StyleObject,
@@ -229,10 +228,7 @@ const ReStyleSheet = <T extends (theme: breakpoint<any>) => StyleProps>(
         customShallowEqual(prev, current, accessed, size)
     ) as any;
 
-    if (__DEV__) {
-      checkProviderError(data);
-    }
-
+    console.log(data);
     let activeMediaQuery = useRef('');
     let styleConfig = useRef<Config>({ dynamicValues: [], styles: {} });
     let CACHE = useRef(new multiKeyStore());

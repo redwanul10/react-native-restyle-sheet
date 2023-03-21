@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Text } from 'react-native';
-import { ReStyleSheet } from 'react-native-restyle-sheet';
+import { ReStyleSheet } from './theme';
 
 const useStyle = ReStyleSheet(({ theme, breakpoints }) => ({
   title: {
     fontWeight: 'bold',
     fontSize: 25,
     marginVertical: 16,
-    backgroundColor: theme?.primaryBgColor,
+    backgroundColor: theme.colors.primary,
     color: 'white',
     textAlign: 'center',
     [breakpoints.only('large')]: {

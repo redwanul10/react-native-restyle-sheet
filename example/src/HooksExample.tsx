@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { ReStyleSheet, useMediaQuery } from 'react-native-restyle-sheet';
+import { useMediaQuery } from 'react-native-restyle-sheet';
+import { ReStyleSheet } from './theme';
 
 const useStyle = ReStyleSheet(() => ({
   container: {

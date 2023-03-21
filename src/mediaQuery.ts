@@ -23,11 +23,15 @@ export const breakPointMethods: BreakPointMethods<{}> = {
 
 export const dynamicOperator: Operators = {
   '>': (width, breakpoint) => {
-    if (breakpoint.start === breakpoint.end) return true;
+    if (width >= breakpoint.start && breakpoint.start === breakpoint.end) {
+      return true;
+    }
     return width >= breakpoint.start;
   },
   '<': (width, breakpoint) => {
-    if (breakpoint.start === breakpoint.end) return true;
+    if (width <= breakpoint.end && breakpoint.start === breakpoint.end) {
+      return true;
+    }
     return width <= breakpoint.end;
   },
   '=': (width, breakpoint) => {

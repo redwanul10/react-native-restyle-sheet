@@ -1,6 +1,4 @@
 import useMediaQuery from './hooks/useMediaQuery';
-import ReStyleSheet from './ReStyleSheet';
-import Provider from './Provider';
-import { createTheme } from './createTheme';
+import { createStyleSheet } from './createStyleSheet';
 
-export { Provider, useMediaQuery, ReStyleSheet, createTheme };
+export { useMediaQuery, createStyleSheet };
