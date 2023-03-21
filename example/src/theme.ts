@@ -23,7 +23,14 @@ export const { ReStyleSheet, changeTheme } = createStyleSheet({
 });
 
 const darkTheme = {
-  // your dark theme
+  themeId: 'dark',
+  colors: {
+    main: 'red',
+    primary: '#19A7CE',
+    secondary: '#F6F1F1',
+    tertiary: '#146C94',
+    quatenary: '#000000',
+  },
 };
 export const toggleTheme = () => {
   changeTheme((themId) => (themId === 'dark' ? lightTheme : darkTheme));

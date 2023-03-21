@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Text } from 'react-native';
-import { ReStyleSheet } from './theme';
+import { ReStyleSheet, toggleTheme } from './theme';
 
 const useStyle = ReStyleSheet(({ theme, breakpoints }) => ({
   title: {
@@ -43,6 +43,7 @@ export default function ReStyleSheetExample() {
       )}
 
       <Button onPress={toggleColor} title="toggle color" />
+      <Button onPress={toggleTheme} title="toggle THEME" />
     </>
   );
 }
